@@ -175,7 +175,7 @@ class UserController extends Controller
     {
         $user=User::find($id);
 
-        if(!isset($user)){
+        if($user === Null){
 
           return response()->json(['message'=>'the record does not exit','status'=>204]);
         }

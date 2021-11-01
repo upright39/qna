@@ -57,16 +57,8 @@ class User extends Authenticatable
     ];
 
 
-    //protected $dates = ['registration_date'];
+   
 
-//     protected $attributes=[
-//         'status'=>'1',
-//         'inactive'=>'0',
-//          'admin'=>'1',
-//          'employee'=>'2',
-//         'user'=>'3',
-//          'advertiser'=>'4',
-//          'content creator'=>'5'
         
 
 

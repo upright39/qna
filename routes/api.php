@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsersDetailsController;
 
 
 /*
@@ -25,3 +26,11 @@ Route::post('adduser', [UserController::class,'addUser']);
 Route::get('user/{id}', [UserController::class,'show']);
 Route::put('update/{id}', [UserController::class,'update']);
 Route::delete('delete/{id}', [UserController::class,'deleteUser']);
+
+//user details routes//
+
+Route::get('userdetails', [UsersDetailsController::class,'AllUserDetails']);
+Route::post('adduserdetails', [UsersDetailsController::class,'AddUserDetail']);
+Route::delete('deleteuserdetail/{key}',[UsersDetailsController::class,'DeleteUserDetails']);
+Route::put('updateuserdetails/{id}',[UsersDetailsController::class,'UpdateUserDetails']);
+Route::get('userdetail/{id}',[UsersDetailsController::class,'UserDetail']);
