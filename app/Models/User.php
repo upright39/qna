@@ -32,8 +32,8 @@ class User extends Authenticatable
         'user_type',
         //'status',
         'account_type',
-        // 'reg_date',
-        // 'reg_time'
+        'reg_date',
+        'reg_time',
 
     ];
 
@@ -46,7 +46,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-    public $timestamps=false;
+    public $timestamps = false;
     /**
      * The attributes that should be cast.
      *
@@ -55,14 +55,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-
-   
-
-        
-
-
-
-
-
 }

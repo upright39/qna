@@ -103,10 +103,6 @@ class UsersDetailsController extends Controller
     }
 
 
-
-
-
-
     public function UserDetail($id)
     {
         $user = UserDetail::find($id);
