@@ -21,9 +21,9 @@ class QnaQuestionCategoryController extends Controller
     {
         $user = new QnaQuestionCategory();
 
-        $user->qc_by = $request->qcatigory_by;
-        $user->qc_name = $request->qcatigory_name;
-        $user->qc_desc = $request->qcatigory_description;
+        $user->qc_by = $request->qcategory_by;
+        $user->qc_name = $request->qcategory_name;
+        $user->qc_desc = $request->qcategory_description;
         $user->qc_date = date("Y-m-d");
         $user->qc_time = strtotime(date("Y-m-d H:m:s"));
 
@@ -73,10 +73,16 @@ class QnaQuestionCategoryController extends Controller
 
             $user->qc_desc = $request->qcategory_description;
         }
-
         $user->qc_date = date("Y-m-d");
         $user->qc_time = strtotime(date("Y-m-d H:m:s"));
         $user->save();
         return response()->json(["message" => "updatted successfully"]);
+    }
+
+    public function SingleQuestionCategory($id)
+    {
+        $user =  QnaQuestionCategory::find($id);
+
+        return  new QnaQuestionCategoryResource($user);
     }
 }

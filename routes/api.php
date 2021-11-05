@@ -8,6 +8,8 @@ use App\Http\Controllers\QnaCreateTestController;
 use App\Http\Controllers\QnaQuestionsController;
 use App\Http\Controllers\QnaQuestionAnswerOptionsController;
 use App\Http\Controllers\QnaQuestionCategoryController;
+use App\Http\Controllers\QnaSubjectController;
+
 
 
 /*
@@ -66,3 +68,13 @@ Route::get('answer-option/{id}', [QnaQuestionAnswerOptionsController::class, 'An
 Route::get('all-question-category', [QnaQuestionCategoryController::class, 'AllQnaQuestionCategory']);
 Route::post('add-question-category', [QnaQuestionCategoryController::class, 'AddQnaQuestionCategory']);
 Route::delete('delete-question-category/{id}', [QnaQuestionCategoryController::class, 'DelQuestionCategory']);
+Route::put('update-question-category/{id}', [QnaQuestionCategoryController::class, 'UpdateQuesCat']);
+Route::get('single-question-category/{id}', [QnaQuestionCategoryController::class, 'SingleQuestionCategory']);
+
+//QNA SUBJECTS//
+
+Route::get('all-qna-subjects', [QnaSubjectController::class, 'AllQnaSubject']);
+Route::post('add-qna-subjects', [QnaSubjectController::class, 'AddSubJect']);
+Route::put('update-qna-subjects/{id}', [QnaSubjectController::class, 'UpdateSubJect']);
+Route::delete('delete-qna-subjects/{id}', [QnaSubjectController::class, 'DeleteQnaSubject']);
+Route::get('single-qna-subject/{id}', [QnaSubjectController::class, 'SingleSubject']);
