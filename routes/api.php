@@ -6,6 +6,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsersDetailsController;
 use App\Http\Controllers\QnaCreateTestController;
 use App\Http\Controllers\QnaQuestionsController;
+use App\Http\Controllers\QnaQuestionAnswerOptionsController;
+use App\Http\Controllers\QnaQuestionCategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,20 +33,36 @@ Route::delete('delete/{id}', [UserController::class, 'deleteUser']);
 
 //user details routes//
 
-Route::get('userdetails', [UsersDetailsController::class, 'AllUserDetails']);
-Route::post('adduserdetails', [UsersDetailsController::class, 'AddUserDetail']);
-Route::delete('deleteuserdetail/{key}', [UsersDetailsController::class, 'DeleteUserDetails']);
-Route::put('updateuserdetails/{id}', [UsersDetailsController::class, 'UpdateUserDetails']);
-Route::get('userdetail/{id}', [UsersDetailsController::class, 'UserDetail']);
+Route::get('user-details', [UsersDetailsController::class, 'AllUserDetails']);
+Route::post('add-user-details', [UsersDetailsController::class, 'AddUserDetail']);
+Route::delete('delete-user-detail/{key}', [UsersDetailsController::class, 'DeleteUserDetails']);
+Route::put('update-user-details/{id}', [UsersDetailsController::class, 'UpdateUserDetails']);
+Route::get('user-detail/{id}', [UsersDetailsController::class, 'UserDetail']);
 
 //QNA CREATE TEST ROUTES//
 
-Route::get('alltestdetails', [QnaCreateTestController::class, 'QnaCreateTestAllUsers']);
-Route::post('addtestuser', [QnaCreateTestController::class, 'CreateText']);
-Route::post('addtestuser', [QnaCreateTestController::class, 'CreateText']);
-Route::delete('deletetest/{id}', [QnaCreateTestController::class, 'DeleteTest']);
-Route::delete('updatetest/{id}', [QnaCreateTestController::class, 'UpdateTest']);
+Route::get('all-test-details', [QnaCreateTestController::class, 'QnaCreateTestAllUsers']);
+Route::post('add-test-user', [QnaCreateTestController::class, 'CreateText']);
+Route::delete('delete-test/{id}', [QnaCreateTestController::class, 'DeleteTest']);
+Route::delete('update-test/{id}', [QnaCreateTestController::class, 'UpdateTest']);
 
 //QNA QUESTIONS//
 
-Route::get('allquestion', [QnaQuestionsController::class, 'AllQuestions']);
+Route::get('all-question', [QnaQuestionsController::class, 'AllQuestions']);
+Route::post('add-test-question', [QnaQuestionsController::class, 'AddTestQuestion']);
+Route::get('qna-question/{id}', [QnaQuestionsController::class, 'QnaQuestion']);
+Route::put('update-question/{id}', [QnaQuestionsController::class, 'UpdateQuestion']);
+Route::delete('delete-question/{id}', [QnaQuestionsController::class, 'DeleteQuestion']);
+
+//  QNA  QUESTION AND ANSWERS OPTIONS    //
+
+Route::get('answer-options', [QnaQuestionAnswerOptionsController::class, 'AllQnaQuestionAnswerOptions']);
+Route::post('add-answer-option', [QnaQuestionAnswerOptionsController::class, 'AddQuestionOptions']);
+Route::put('update-answer-option/{id}', [QnaQuestionAnswerOptionsController::class, 'UpdateQuestion']);
+Route::delete('delete-answer-option/{id}', [QnaQuestionAnswerOptionsController::class, 'DeleteQuestionOption']);
+Route::get('answer-option/{id}', [QnaQuestionAnswerOptionsController::class, 'AnswerOption']);
+
+//  QNA  QUESTION CATIEGORY  //
+Route::get('all-question-category', [QnaQuestionCategoryController::class, 'AllQnaQuestionCategory']);
+Route::post('add-question-category', [QnaQuestionCategoryController::class, 'AddQnaQuestionCategory']);
+Route::delete('delete-question-category/{id}', [QnaQuestionCategoryController::class, 'DelQuestionCategory']);

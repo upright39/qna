@@ -47,7 +47,7 @@ class QnaCreateTestController extends Controller
         $user->test_view_type = $request->test_view_type;
         $user->test_time_per_question = $request->test_time_per_question;
         $user->test_date = date("Y-m-d");
-        $user->test_time = date("Y-m-d H-m-s");
+        $user->test_time = date("Y-m-d H:m:s");
 
 
         $user->save();

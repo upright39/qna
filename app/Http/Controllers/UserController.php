@@ -60,7 +60,7 @@ class UserController extends Controller
       'wallet_id' =>  $request->wallet_id,
       'user_type' =>  $request->user_type,
       'reg_date' => date("Y-m-d"),
-      'reg_time' => date("Y-m-d H-m-s")
+      'reg_time' => date("Y-m-d H:m:s")
 
     ]);
 

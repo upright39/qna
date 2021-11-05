@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class QnaQuestions extends Model
+class QnaQuestionCategory extends Model
 {
     use HasFactory;
+    protected $table = "qna_question_category";
     public $timestamps = false;
-    protected $primaryKey = 'q_id';
+    protected $primaryKey = 'qc_id';
 }
