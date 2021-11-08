@@ -9,8 +9,7 @@ use App\Http\Controllers\QnaQuestionsController;
 use App\Http\Controllers\QnaQuestionAnswerOptionsController;
 use App\Http\Controllers\QnaQuestionCategoryController;
 use App\Http\Controllers\QnaSubjectController;
-
-
+use App\Http\Controllers\QnaTestQuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,3 +77,14 @@ Route::post('add-qna-subjects', [QnaSubjectController::class, 'AddSubJect']);
 Route::put('update-qna-subjects/{id}', [QnaSubjectController::class, 'UpdateSubJect']);
 Route::delete('delete-qna-subjects/{id}', [QnaSubjectController::class, 'DeleteQnaSubject']);
 Route::get('single-qna-subject/{id}', [QnaSubjectController::class, 'SingleSubject']);
+
+
+// Qna Test Question//
+
+Route::get('test-question', [QnaTestQuestionController::class, 'QnaTestQuestion']);
+Route::post('add-test-questions', [QnaTestQuestionController::class, 'AddQnaTestQuestion']);
+Route::put('update-test-questions/{id}', [QnaTestQuestionController::class, 'UpdateTestQuestion']);
+Route::delete('delete-test-questions/{id}', [QnaTestQuestionController::class, 'DeleteTestQuestion']);
+Route::get('single-test-questions/{id}', [QnaTestQuestionController::class, 'SingleTestQuestion']);
+
+// Qna User Test Question//
