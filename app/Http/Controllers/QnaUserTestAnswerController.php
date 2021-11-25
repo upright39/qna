@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\QnaUserTestAnswerResource;
 use App\Models\QnaUserTestAnswer;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,10 @@ class QnaUserTestAnswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function AllUsersTestAnswers()
     {
-        //
+        $user = QnaUserTestAnswer::all();
+        return QnaUserTestAnswerResource::collection($user);
     }
 
     /**
@@ -44,9 +46,8 @@ class QnaUserTestAnswerController extends Controller
      * @param  \App\Models\QnaUserTestAnswer  $qnaUserTestAnswer
      * @return \Illuminate\Http\Response
      */
-    public function show(QnaUserTestAnswer $qnaUserTestAnswer)
+    public function show()
     {
-        //
     }
 
     /**
@@ -55,7 +56,7 @@ class QnaUserTestAnswerController extends Controller
      * @param  \App\Models\QnaUserTestAnswer  $qnaUserTestAnswer
      * @return \Illuminate\Http\Response
      */
-    public function edit(QnaUserTestAnswer $qnaUserTestAnswer)
+    public function edit()
     {
         //
     }
@@ -67,7 +68,7 @@ class QnaUserTestAnswerController extends Controller
      * @param  \App\Models\QnaUserTestAnswer  $qnaUserTestAnswer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, QnaUserTestAnswer $qnaUserTestAnswer)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,7 +79,7 @@ class QnaUserTestAnswerController extends Controller
      * @param  \App\Models\QnaUserTestAnswer  $qnaUserTestAnswer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(QnaUserTestAnswer $qnaUserTestAnswer)
+    public function destroy($id)
     {
         //
     }

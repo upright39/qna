@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\QnaSubject;
+use App\Models\QnaQuestions;
 use Illuminate\Http\Request;
 use App\Http\Resources\QnaSubjectResource;
 
@@ -23,13 +24,20 @@ class QnaSubjectController extends Controller
         $user->sub_by = $request->subject_by;
         $user->sub_desc = $request->subject_desc;
         $user->sub_name = $request->subject_name;
-        $user->sub_chan_id = $request->subject_chan_id;
         $user->sub_date = date("Y-m-d");
         $user->sub_time = strtotime(date("Y-m-d H:m:s"));
-
         $user->save();
+
+
+        $question = new  QnaQuestions();
+
+        $question->q_sub_id = $user->sub_id;
+        $question->save();
+
+
         return response()->json(['message' => 'subject added']);
     }
+
 
     public function UpdateSubject(Request $request, $id)
     {
@@ -47,9 +55,7 @@ class QnaSubjectController extends Controller
             $user->sub_name = $request->subject_name;
         }
 
-        if ($request->has('sub_chan_id')) {
-            $user->sub_chan_id = $request->sub_chan_id;
-        }
+
 
         $user->sub_date = date("Y-m-d");
         $user->sub_time = strtotime(date("Y-m-d H:m:s"));

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserDetail;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -36,7 +37,7 @@ class UserController extends Controller
       'gender' => 'required|string',
       'date_of_birth' => 'string',
       'email' =>  'required|string|unique:users,email',
-      'password' => 'required|string',
+      'password' => 'required|confirmed|min:6',
       'username' => 'required|unique:users,pass',
       'country' => 'required|string',
       'city' => 'required|string',
@@ -45,24 +46,30 @@ class UserController extends Controller
 
     ]);
 
-    $user = User::create([
+    $user = new User();
 
-      'phone' => $request->phone,
-      'name' =>  $request->name,
-      'gender' => $request->gender,
-      'dob' => $request->date_of_birth,
-      'email' =>  $request->email,
-      'pass' => $request->password,
-      'username' => $request->username,
-      'email' =>  $request->email,
-      'country' =>  $request->country,
-      'city' => $request->city,
-      'wallet_id' =>  $request->wallet_id,
-      'user_type' =>  $request->user_type,
-      'reg_date' => date("Y-m-d"),
-      'reg_time' => date("Y-m-d H:m:s")
+    $user->phone = $request->input('phone');
 
-    ]);
+    $user->name =  $request->input('name');
+    $user->gender = $request->input('gender');
+    $user->dob = $request->input('date_of_birth');
+    $user->email =  $request->input('email');
+    $user->pass = $request->input('password');
+    $user->email =  $request->input('email');
+    $user->username = $request->input('username');
+    $user->email =  $request->input('email');
+    $user->country =  $request->input('country');
+    $user->city = $request->input('city');
+    $user->wallet_id =  $request->input('wallet_id');
+    $user->user_type =  $request->input('user_type');
+    $user->reg_date = date("Y-m-d");
+    $user->reg_time = date("Y-m-d H:m:s");
+
+    $user->save();
+
+    $userDetail = new UserDetail();
+    $userDetail->u_details_id_fk = $user->id;
+    $userDetail->save();
 
     return response()->json(['message' => 'added succesfully', 'status' => 200]);
   }
@@ -75,7 +82,6 @@ class UserController extends Controller
    */
   public function show($id)
   {
-
     $user = User::find($id);
     return new UserResource($user);
   }

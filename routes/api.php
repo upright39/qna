@@ -10,6 +10,10 @@ use App\Http\Controllers\QnaQuestionAnswerOptionsController;
 use App\Http\Controllers\QnaQuestionCategoryController;
 use App\Http\Controllers\QnaSubjectController;
 use App\Http\Controllers\QnaTestQuestionController;
+use App\Http\Controllers\QnaUserTestAnswerController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +49,7 @@ Route::get('user-detail/{id}', [UsersDetailsController::class, 'UserDetail']);
 Route::get('all-test-details', [QnaCreateTestController::class, 'QnaCreateTestAllUsers']);
 Route::post('add-test-user', [QnaCreateTestController::class, 'CreateText']);
 Route::delete('delete-test/{id}', [QnaCreateTestController::class, 'DeleteTest']);
-Route::delete('update-test/{id}', [QnaCreateTestController::class, 'UpdateTest']);
+Route::post('update-test/{id}', [QnaCreateTestController::class, 'UpdateTest']);
 
 //QNA QUESTIONS//
 
@@ -88,3 +92,5 @@ Route::delete('delete-test-questions/{id}', [QnaTestQuestionController::class, '
 Route::get('single-test-questions/{id}', [QnaTestQuestionController::class, 'SingleTestQuestion']);
 
 // Qna User Test Question//
+
+Route::get('user-test-answers', [QnaUserTestAnswerController::class, 'AllUsersTestAnswers']);

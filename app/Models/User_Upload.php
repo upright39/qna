@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class QnaSubject extends Model
+class user_upload extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $primaryKey = "sub_id";
+    protected $fillable = [
+        "uu_path"
+    ];
 }

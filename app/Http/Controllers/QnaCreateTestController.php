@@ -86,63 +86,64 @@ class QnaCreateTestController extends Controller
 
         if ($request->has('test_by_id')) {
 
-            $user->name = $request->input('test_by_id');
+            $user->test_by_id = $request->input('test_by_id');
         }
 
         if ($request->has('test_code_id')) {
 
-            $user->name = $request->input('test_code_id');
+            $user->test_code_id = $request->input('test_code_id');
         }
 
         if ($request->has('test_title')) {
 
-            $user->name = $request->input('test_title');
+            $user->test_title = $request->input('test_title');
         }
         if ($request->has('test_desc')) {
 
-            $user->name = $request->input('test_desc');
+            $user->test_desc = $request->input('test_desc');
         }
 
         if ($request->has('test_fee')) {
 
-            $user->name = $request->input('test_fee');
+            $user->test_fee = $request->input('test_fee');
         }
         if ($request->has('test_main_date')) {
 
-            $user->name = $request->input('test_main_date');
+            $user->test_main_date = $request->input('test_main_date');
         }
         if ($request->has('test_end_date')) {
 
-            $user->name = $request->input('test_end_date');
+            $user->test_end_date = $request->input('test_end_date');
         }
         if ($request->has('test_main_time')) {
 
-            $user->name = $request->input('test_main_time');
+            $user->test_main_time = $request->input('test_main_time');
         }
         if ($request->has('test_end_time')) {
 
-            $user->name = $request->input('test_end_time');
+            $user->test_end_time = $request->input('test_end_time');
         }
         if ($request->has('test_duration')) {
 
-            $user->name = $request->input('test_duration');
+            $user->test_duration = $request->input('test_duration');
         }
         if ($request->has('test_duration_timeframe')) {
 
-            $user->name = $request->input('test_duration_timeframe');
+            $user->test_duration_timeframe = $request->input('test_duration_timeframe');
         }
         if ($request->has('test_reward')) {
 
-            $user->name = $request->input('test_reward');
+            $user->test_reward = $request->input('test_reward');
         }
         if ($request->has('test_view_type')) {
-            $user->name = $request->input('test_view_type');
+            $user->test_view_type = $request->input('test_view_type');
         }
         if ($request->has('test_time_per_question')) {
 
-            $user->name = $request->input('test_time_per_question');
+            $user->test_time_per_question = $request->input('test_time_per_question');
         }
 
+        $user->save();
         return response()->json(['message' => 'updated succesfully', 'status' => 200]);
     }
 }

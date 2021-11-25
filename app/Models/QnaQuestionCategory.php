@@ -11,4 +11,11 @@ class QnaQuestionCategory extends Model
     protected $table = "qna_question_category";
     public $timestamps = false;
     protected $primaryKey = 'qc_id';
+
+
+    // protected $fillable = [
+    //     'qc_name',
+    //     'qc_date',
+    //     'qc_time',
+    // ];
 }

@@ -20,7 +20,7 @@ class QnaSubjectResource extends JsonResource
             'subjet_by' => $this->sub_by,
             'subject_desc' => $this->sub_desc,
             'subject_name' => $this->sub_name,
-            'subject_chan_id' => $this->sub_chan_id,
+
 
         ];
     }

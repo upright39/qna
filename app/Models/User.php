@@ -30,7 +30,7 @@ class User extends Authenticatable
         'city',
         'wallet_id',
         'user_type',
-        //'status',
+
         'account_type',
         'reg_date',
         'reg_time',

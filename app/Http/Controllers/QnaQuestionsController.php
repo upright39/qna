@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\ValidationException;
 use App\Http\Resources\QnaQuestionResource;
 use App\Models\QnaQuestions;
+use App\Models\User_Upload;
+use App\Models\QnaQuestionCategory;
+
 use Illuminate\Http\Request;
 
 class QnaQuestionsController extends Controller
@@ -29,22 +33,58 @@ class QnaQuestionsController extends Controller
      */
     public function AddTestQuestion(Request $request)
     {
-        $user = new QnaQuestions();
+
+        $cat_id = null;
+
+        if ($request->has('qc_name')) {
+            $catigory = new QnaQuestionCategory;
+            $catigory->qc_name = $request->qc_name;
+            $catigory->qc_by = $request->qc_by;
+            $catigory->qc_date = date("Y-m-d");
+            $catigory->qc_time = strtotime(date("Y-m-d H:m:s"));
+            $catigory->save();
+
+            $cat_id = $catigory->qc_id;
+        } else {
+            $cat_id = $request->question_cate_id;
+        }
+
+        $question = new QnaQuestions();
+
+        $question->q_by = $request->question_by;
+        $question->q_type = $request->question_type;
+        $question->question = $request->question;
+        $question->q_description = $request->question_description;
+        $question->q_sub_id = $request->question_sub_id;
+        $question->q_cate_id = $cat_id;
+        $question->q_date = date("Y-m-d");
+        $question->q_time = strtotime(date("Y-m-d H:m:s"));
+        $question->save();
+
+        $ques_id = $question->q_id;
+
+        $image = new User_Upload;
+        $request->validate([
+            'uu_file_name' => 'mimes:png,jpg,jpeg,csv,txt,xlx,xls,pdf|max:2048'
+        ]);
 
 
-        $user->q_by = $request->question_by;
-        $user->q_sub_id = $request->question_subject_id;
-        $user->q_cate_id = $request->question_catigory_id;
-        $user->q_type = $request->question_type;
-        $user->question = $request->question;
-        $user->q_description = $request->question_description;
-        $user->q_status = $request->question_status;
-        $user->q_date = date("Y-m-d");
-        $user->q_time = strtotime(date("Y-m-d H:m:s"));
+        if ($request->has('uu_file_name')) {
+            $image->uu_file_name = $request->file('uu_file_name')->store('question_image');
+            $image->uu_user_id = $ques_id;
+            $image->uu_user_to = $request->uu_user_to;
+            $image->uu_path = $request->uu_path;
+            $image->uu_type = $request->uu_type;
+            $image->uu_date = date("Y-m-d");
+        }
+        $image->save();
 
-        $user->save();
         return response()->json(['massage' => 'submitted successfully..']);
     }
+
+
+
+
 
     /**
      * Display the specified resource.

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\QnaQuestionCategoryResource;
 use App\Models\QnaQuestionCategory;
+use App\Models\QnaQuestions;
 use Illuminate\Http\Request;
 
 class QnaQuestionCategoryController extends Controller
@@ -28,6 +29,12 @@ class QnaQuestionCategoryController extends Controller
         $user->qc_time = strtotime(date("Y-m-d H:m:s"));
 
         $user->save();
+
+
+        // $question = new  QnaQuestions();
+        // $question->q_cate_id = $user->qc_id;
+        // $question->save();
+
         return response()->json(['message' => 'addeded successfully']);
     }
 
