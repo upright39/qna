@@ -19,8 +19,17 @@ class QnaQuestionsController extends Controller
      */
     public function AllQuestions()
     {
-        $user = QnaQuestions::all();
-        return QnaQuestionResource::collection($user);
+
+        $data = QnaQuestions::join('qna_subjects', 'qna_subjects.sub_name', '=', 'qna_questions.q_id')
+            ->join('user_uploads', 'user_uploads.uu_file_name', '=', 'qna_subjects.sub_id')
+            ->get([
+                'qna_questions.question', 'qna_questions.q_description',
+                'qna_questions.q_by', 'qna_questions.q_type',
+                'qna_subjects.sub_name', 'user_uploads.uu_file_name'
+            ]);
+
+
+        return $data;
     }
 
 
@@ -61,17 +70,15 @@ class QnaQuestionsController extends Controller
         $question->q_time = strtotime(date("Y-m-d H:m:s"));
         $question->save();
 
-        $ques_id = $question->q_id;
 
         $image = new User_Upload;
         $request->validate([
             'uu_file_name' => 'mimes:png,jpg,jpeg,csv,txt,xlx,xls,pdf|max:2048'
         ]);
 
-
         if ($request->has('uu_file_name')) {
             $image->uu_file_name = $request->file('uu_file_name')->store('question_image');
-            $image->uu_user_id = $ques_id;
+            $image->uu_user_id = $request->uu_user_id;
             $image->uu_user_to = $request->uu_user_to;
             $image->uu_path = $request->uu_path;
             $image->uu_type = $request->uu_type;
